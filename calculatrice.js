@@ -28,9 +28,11 @@ function calculate(){
             number1 = Number(number1) * Number(number2)
             break
         case "/":
+            if(number2 === "0")
+                return null
             number1 = Number(number1) / Number(number2)
             break
-        
+            
     }
     operator = ""
     number2 = ""
