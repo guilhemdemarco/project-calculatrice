@@ -7,6 +7,7 @@ const equalsButton = document.querySelector('.equals');
 let number1 = '';
 let operator = '';
 let number2 = '';
+let can_modify = true
 
 function updateDisplay() {
     const left = number1 || '0';
@@ -36,6 +37,7 @@ function calculate(){
     }
     operator = ""
     number2 = ""
+    can_modify = false
     updateDisplay()
 }
 
@@ -54,6 +56,7 @@ numberButtons.forEach((button) => {
 });
 
 function addDigit(digit){
+    if(!can_modify) return
     if (operator === '') {
         number1 = number1 === '' || number1 === '0' ? digit : number1 + digit;
     } else {
@@ -70,6 +73,8 @@ operatorButtons.forEach((button) => {
 });
 
 function addOperator(op){
+    console.log(op)
+    can_modify = true
     if (number1 === '') {
         return;
     }
