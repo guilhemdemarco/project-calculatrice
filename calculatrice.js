@@ -70,17 +70,11 @@ operatorButtons.forEach((button) => {
 });
 
 function addOperator(op){
-    console.log(op)
     if (number1 === '') {
         return;
     }
-    if (operator === '') {
-        operator = op;
-    } else if (number2 === '') {
-        operator = op;
-    } else {
-
-    }
+    operator = op
+    
     updateDisplay();
 }
 
