@@ -49,31 +49,40 @@ function reset() {
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const digit = button.dataset.number;
-        if (operator === '') {
-            number1 = number1 === '' || number1 === '0' ? digit : number1 + digit;
-        } else {
-            number2 = number2 === '' || number2 === '0' ? digit : number2 + digit;
-        }
-        updateDisplay();
+        addDigit(digit)
     });
 });
+
+function addDigit(digit){
+    if (operator === '') {
+        number1 = number1 === '' || number1 === '0' ? digit : number1 + digit;
+    } else {
+        number2 = number2 === '' || number2 === '0' ? digit : number2 + digit;
+    }
+    updateDisplay();
+}
 
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const op = button.dataset.operator;
-        if (number1 === '') {
-            return;
-        }
-        if (operator === '') {
-            operator = op;
-        } else if (number2 === '') {
-            operator = op;
-        } else {
-
-        }
-        updateDisplay();
+        addOperator(op)
     });
 });
+
+function addOperator(op){
+    console.log(op)
+    if (number1 === '') {
+        return;
+    }
+    if (operator === '') {
+        operator = op;
+    } else if (number2 === '') {
+        operator = op;
+    } else {
+
+    }
+    updateDisplay();
+}
 
 clearButton.addEventListener('click', () => {
     reset();
@@ -82,3 +91,19 @@ clearButton.addEventListener('click', () => {
 equalsButton.addEventListener('click', () => {
     calculate()
 })
+
+window.addEventListener('keydown', (event) => {
+    const key = event.key;
+    console.log(key)
+  
+    if ('0123456789'.includes(key)) {
+      addDigit(key)
+    } else if ('+-*/'.includes(key)) {
+      addOperator(key) 
+    } else if (key === 'Enter') {
+      calculate()
+    } else if (key === 'Escape') {
+      reset()
+    }
+  });
+  
