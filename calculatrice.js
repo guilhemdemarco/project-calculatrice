@@ -45,6 +45,7 @@ function reset() {
     number1 = '';
     operator = '';
     number2 = '';
+    can_modify = true
     display.innerHTML = '0';
 }
 
@@ -104,5 +105,6 @@ window.addEventListener('keydown', (event) => {
     } else if (key === 'Escape') {
       reset()
     }
+    event.preventDefault()
   });
   
