@@ -1,6 +1,7 @@
 const display = document.getElementById('display');
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
+const clearButton = document.querySelector('.clear');
 
 let number1 = '';
 let operator = '';
@@ -11,6 +12,13 @@ function updateDisplay() {
     const op = operator ? operator : '';
     const right = number2 ? number2 : '';
     display.innerHTML = left + op + right;
+}
+
+function reset() {
+    number1 = '';
+    operator = '';
+    number2 = '';
+    display.innerHTML = '0';
 }
 
 numberButtons.forEach((button) => {
@@ -40,4 +48,8 @@ operatorButtons.forEach((button) => {
         }
         updateDisplay();
     });
+});
+
+clearButton.addEventListener('click', () => {
+    reset();
 });
