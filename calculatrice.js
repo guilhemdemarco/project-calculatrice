@@ -2,6 +2,7 @@ const display = document.getElementById('display');
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
 const clearButton = document.querySelector('.clear');
+const equalsButton = document.querySelector('.equals');
 
 let number1 = '';
 let operator = '';
@@ -12,6 +13,28 @@ function updateDisplay() {
     const op = operator ? operator : '';
     const right = number2 ? number2 : '';
     display.innerHTML = left + op + right;
+}
+
+function calculate(){
+    if (operator === "" || number2 === "") return
+    switch (operator) {
+        case "+":
+            number1 = Number(number1) + Number(number2)
+            break
+        case "-":
+            number1 = Number(number1) - Number(number2)
+            break
+        case "*":
+            number1 = Number(number1) * Number(number2)
+            break
+        case "/":
+            number1 = Number(number1) / Number(number2)
+            break
+        
+    }
+    operator = ""
+    number2 = ""
+    updateDisplay()
 }
 
 function reset() {
@@ -53,3 +76,7 @@ operatorButtons.forEach((button) => {
 clearButton.addEventListener('click', () => {
     reset();
 });
+
+equalsButton.addEventListener('click', () => {
+    calculate()
+})
